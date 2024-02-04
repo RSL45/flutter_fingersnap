@@ -10,13 +10,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   cupertino_icons: ^1.0.6
-
   # 国际化
   flutter_localizations:
     sdk: flutter
   intl: any
+  # svg支持
+  flutter_svg: ^2.0.9
+  # 屏幕适配
+  flutter_screenutil: ^5.9.0
 
 dev_dependencies:
   flutter_test:
@@ -25,7 +27,31 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
   build_runner: ^2.4.7
+  # icon图标生成插件
+  flutter_launcher_icons: ^0.13.1
+  # 闪屏页
+  flutter_native_splash: ^2.3.8
 
 flutter:
   uses-material-design: true
   generate: true
+
+  assets:
+    - assets/images/
+
+# icon图标配置
+flutter_icons:
+  image_path: "assets/images/ic_launcher.png"
+  android: "ic_launcher"    # 指定生成的图标名
+  ios: true
+
+# 闪屏页配置
+flutter_native_splash:
+  color: "79B4EB"
+  image: assets/images/ic_launcher.png
+  android: true
+  android_gravity: center
+  ios: true
+  android_12:
+    icon_background_color: "79B4EB"
+    image: assets/images/ic_launcher.png
