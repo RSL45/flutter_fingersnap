@@ -14,7 +14,6 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/bg_login.webp"),
@@ -25,11 +24,8 @@ class LoginScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 0.22.sh),
-            Image.asset(
-              "assets/images/ic_launcher.png",
-              width: 80.w,
-              height: 80.w,
-            ),
+            Image.asset("assets/images/ic_launcher.png",
+                width: 80.w, height: 80.w),
             SizedBox(height: 9.h),
             Text(
               AppLocalizations.of(context)!.appName,
@@ -40,68 +36,77 @@ class LoginScreen extends StatelessWidget {
               AppLocalizations.of(context)!.login_slogan,
               style: defaultStyle.copyWith(fontSize: 18.sp),
             ),
-            SizedBox(height: 0.2.sh),
-            AuthLoginBtn(
-                imagePath: "assets/images/ic_facebook.svg",
-                btnHint: AppLocalizations.of(context)!.login_facebook),
+            const Expanded(child: SizedBox.shrink()),
+            const AuthLoginBtn(loginType: LoginType.facebook),
             SizedBox(height: 20.h),
-            AuthLoginBtn(
-                imagePath: "assets/images/ic_google.svg",
-                btnHint: AppLocalizations.of(context)!.login_google),
+            const AuthLoginBtn(loginType: LoginType.google),
             SizedBox(height: 20.h),
-            AuthLoginBtn(
-                imagePath: "assets/images/ic_apple.svg",
-                btnHint: AppLocalizations.of(context)!.login_google),
-            PrivacyTermSpan(),
+            const AuthLoginBtn(loginType: LoginType._apple),
+            const PrivacyTermSpan(),
           ],
         ),
       ),
-      // Image.asset(
-      //   "assets/images/bg_login.webp",
-      //   fit: BoxFit.fill,
-      //   width: double.infinity,
-      //   height: double.infinity,
-      // ),
     );
   }
 }
 
+enum LoginType { facebook, google, _apple }
+
 class AuthLoginBtn extends StatefulWidget {
   const AuthLoginBtn({
-    required this.imagePath,
-    required this.btnHint,
+    required this.loginType,
     super.key,
   });
 
-  final String imagePath;
-  final String btnHint;
+  final LoginType loginType;
 
   @override
   State<AuthLoginBtn> createState() => _AuthLoginBtnState();
 }
 
 class _AuthLoginBtnState extends State<AuthLoginBtn> {
+  late String imagePath;
+  late String btnHint;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 20.h),
-      margin: EdgeInsets.symmetric(horizontal: 58.w),
-      decoration: BoxDecoration(
-        color: AppColors.color_3F3F3F,
-      ),
-      child: Stack(
-        children: [
-          SvgPicture.asset(widget.imagePath),
-          Text(
-            widget.btnHint,
-            style: TextStyle(
-              color: AppColors.white,
-              fontSize: 14.sp,
+    switch (widget.loginType) {
+      case LoginType.facebook:
+        imagePath = "assets/images/ic_facebook.svg";
+        btnHint = AppLocalizations.of(context)!.login_facebook;
+
+      case LoginType.google:
+        imagePath = "assets/images/ic_google.svg";
+        btnHint = AppLocalizations.of(context)!.login_google;
+
+      case LoginType._apple:
+        imagePath = "assets/images/ic_apple.svg";
+        btnHint = AppLocalizations.of(context)!.login_apple;
+    }
+    return GestureDetector(
+      onTap: () => {},
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.only(left: 17.w, top: 20.h, bottom: 20.h),
+        margin: EdgeInsets.symmetric(horizontal: 58.w),
+        decoration: BoxDecoration(
+            color: AppColors.color_3F3F3F,
+            borderRadius: BorderRadius.circular(20.r)),
+        child: Stack(
+          children: [
+            Positioned(
+                child: SvgPicture.asset(imagePath, width: 20.w, height: 20.w)),
+            Positioned(
+              left: 0,
+              right: 0,
+              child: Text(
+                btnHint,
+                style: TextStyle(color: AppColors.white, fontSize: 14.sp),
+                textAlign: TextAlign.center,
+              ),
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -115,12 +120,15 @@ class PrivacyTermSpan extends StatefulWidget {
 }
 
 class _PrivacyTermSpanState extends State<PrivacyTermSpan> {
-  final TextStyle linkStyle = const TextStyle(
-      color: AppColors.white,
-      decoration: TextDecoration.underline,
-      decorationColor: AppColors.white);
+  final TextStyle linkStyle = TextStyle(
+    color: AppColors.white,
+    decoration: TextDecoration.underline,
+    decorationColor: AppColors.white,
+    fontSize: 12.sp,
+  );
 
-  final TextStyle defaultStyle = const TextStyle(color: AppColors.color_686868);
+  final TextStyle defaultStyle =
+      TextStyle(color: AppColors.color_686868, fontSize: 12.sp);
 
   late TapGestureRecognizer _tapUserTerm;
   late TapGestureRecognizer _tapPrivacyPolicy;
@@ -165,6 +173,9 @@ class _PrivacyTermSpanState extends State<PrivacyTermSpan> {
           style: linkStyle,
           recognizer: _tapPrivacyPolicy),
     ]);
-    return Text.rich(span);
+    return Container(
+      margin: EdgeInsets.only(left: 52.w, right: 52.w, top: 56.h, bottom: 44.h),
+      child: Text.rich(span, textAlign: TextAlign.center),
+    );
   }
 }

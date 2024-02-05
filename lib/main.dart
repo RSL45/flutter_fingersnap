@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fingersnap/screen/mine/login_screen.dart';
+import 'package:flutter_fingersnap/screen/mine/mine_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-          home: LoginScreen(),
+          home: MineScreen(),
         );
       },
     );

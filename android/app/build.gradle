@@ -59,7 +59,15 @@ android {
         }
     }
 
-
+    // 压缩配置
+    packagingOptions {
+        dex {
+            useLegacyPackaging true
+        }
+        jniLibs {
+            useLegacyPackaging true
+        }
+    }
 }
 
 flutter {
