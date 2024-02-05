@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fingersnap/constant/app_color.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -41,15 +42,15 @@ class LoginScreen extends StatelessWidget {
             ),
             SizedBox(height: 0.2.sh),
             AuthLoginBtn(
-                imagePath: "",
+                imagePath: "assets/images/ic_facebook.svg",
                 btnHint: AppLocalizations.of(context)!.login_facebook),
             SizedBox(height: 20.h),
             AuthLoginBtn(
-                imagePath: "",
+                imagePath: "assets/images/ic_google.svg",
                 btnHint: AppLocalizations.of(context)!.login_google),
             SizedBox(height: 20.h),
             AuthLoginBtn(
-                imagePath: "",
+                imagePath: "assets/images/ic_apple.svg",
                 btnHint: AppLocalizations.of(context)!.login_google),
             PrivacyTermSpan(),
           ],
@@ -83,11 +84,23 @@ class _AuthLoginBtnState extends State<AuthLoginBtn> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 20.h),
       margin: EdgeInsets.symmetric(horizontal: 58.w),
-      child: Row(
+      decoration: BoxDecoration(
+        color: AppColors.color_3F3F3F,
+      ),
+      child: Stack(
         children: [
-          // Image.asset(widget.imagePath),
-          Text(widget.btnHint),
+          SvgPicture.asset(widget.imagePath),
+          Text(
+            widget.btnHint,
+            style: TextStyle(
+              color: AppColors.white,
+              fontSize: 14.sp,
+            ),
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     );

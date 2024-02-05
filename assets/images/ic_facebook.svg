@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 4</title>
+    <g id="Proflie" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01登录" transform="translate(-75, -524)">
+            <g id="编组-4" transform="translate(75, 524)">
+                <g id="facebook3" transform="translate(-0, 0)" fill="#FFFFFF" fill-rule="nonzero">
+                    <path d="M10,0 C15.523125,0 20,4.476875 20,10 C20,15.099375 16.183125,19.3075 11.25,19.9225 L11.25,12.5 L14.6875,12.5 L15,10 L11.25,10 L11.25,8.75 C11.25,8.059375 11.809375,7.5 12.5,7.5 L15,7.5 L15,5 L12.5,5 C10.42875,5 8.75,6.67875 8.75,8.75 L8.75,10 L6.875,10 L6.875,12.5 L8.75,12.5 L8.75,17.44125 L8.75,19.685 L8.75,19.9225 C3.816875,19.3075 0,15.099375 0,10 C0,4.476875 4.476875,0 10,0 Z" id="路径"></path>
+                </g>
+                <rect id="矩形" x="0" y="2.27373675e-13" width="20" height="20"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
